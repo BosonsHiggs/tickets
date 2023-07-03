@@ -93,7 +93,7 @@ class Creator(commands.Cog):
 					await self.bot.tree.sync()
 				
 			await msg.edit(
-				content=f"Comandos sincronizados {'globalmente!' if spec is None else 'com o servidor local!'}"
+				content=f"> Comandos sincronizados {'globalmente!' if spec is None else 'com o servidor local!'} ✅"
 			)
 			return
 			
@@ -107,29 +107,32 @@ class Creator(commands.Cog):
 			else:
 				fmt += 1
 
-		await msg.edit(content=f"Sincronizado com o(s) servidor{'es'[:fmt^1]}.")
+		await msg.edit(content=f"> Sincronizado com o(s) servidor{'es'[:fmt^1]}. ✅")
 
 	@commands.hybrid_command(name='del_key_redis', brief="Deletar uma chave do servidor Redis")
 	@commands.cooldown(1, 10, commands.BucketType.user)
 	@commands.is_owner()
 	@app_commands.guilds(MY_GUILD_ID)
 	async def del_key_redis_command(self, ctx, key: str):
+		await ctx.defer(ephemeral=True)
 		await self.bot.redis.delete(key)
-		await ctx.send(f"A chave {key} foi deletada com sucesso!")
+		await ctx.send(f"> A chave {key} foi deletada com sucesso! ✅")
 
 	@commands.hybrid_command(name='clear_all_redis', brief="Apaga o banco de dados atual do servidor Redis")
 	@commands.cooldown(1, 10, commands.BucketType.user)
 	@commands.is_owner()
 	@app_commands.guilds(MY_GUILD_ID)
 	async def clear_all_redis_command(self, ctx):
+		await ctx.defer(ephemeral=True)
 		await self.bot.redis.flushdb() #apaga o banco de dados atual ou self.bot.redis.flushall() para pagar todos
-		await ctx.send(f"O banco de dados foi resetado!")
+		await ctx.send(f"> O banco de dados foi resetado! ✅")
 
 	@commands.hybrid_command(name='load_buttons', brief="Ler todos os botões e dropdowns após o reinicio do bot")
 	@commands.cooldown(1, 10, commands.BucketType.user)
 	@commands.is_owner()
 	@app_commands.guilds(MY_GUILD_ID)
 	async def load_buttons_command(self, ctx):
+		await ctx.defer(ephemeral=True)
 		if not hasattr(self.bot, "persistent_views_added"):
 			self.bot.persistent_views_added = True
 
@@ -154,7 +157,7 @@ class Creator(commands.Cog):
 				self.bot.add_view(delete_button)
 
 		await load_buttons_dropdowns()
-		await ctx.send("Botões e dropdowns restaurados com sucesso!")
+		await ctx.send("> Botões e dropdowns restaurados com sucesso! ✅")
 		"""except Exception as e:
 			print(f"An error occurred: {e}")
 			tb = traceback.format_exc()

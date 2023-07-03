@@ -13,6 +13,7 @@ class Support(commands.Cog):
     @commands.has_permissions(administrator=True)
     @commands.cooldown(1, 10, commands.BucketType.user)
     async def criar_ticket_command(self, ctx):
+        await ctx.defer()
         unique_id = UniqueIdGenerator.generate_unique_custom_id()
         data_options = JSONHandler.read_json('json_files/options.json')
         options = data_options["options"]
