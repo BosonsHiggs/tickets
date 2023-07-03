@@ -1,5 +1,4 @@
 import json
-import random
 from discord.ext import commands
 from classes.dropdown import DropdownView
 from classes.utilities import UniqueIdGenerator
@@ -10,14 +9,15 @@ class Support(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.hybrid_command(name='criar_ticket', brief="Cria um ticket")
+    @commands.has_permissions(administrator=True)
     @commands.cooldown(1, 10, commands.BucketType.user)
-    async def support(self, ctx):
+    async def criar_ticket_command(self, ctx):
         unique_id = UniqueIdGenerator.generate_unique_custom_id()
         data_options = JSONHandler.read_json('json_files/options.json')
         options = data_options["options"]
 
-        view = DropdownView(options, response="You selected:", placeholder="Choose a support category", custom_id_dropdown=f"dropdown_{ctx.message.id}", custom_id_button=unique_id)
+        view = DropdownView(options, placeholder=data_options["channel_ticket"]["dropdown_placeholder"], custom_id_dropdown=f"dropdown_{ctx.message.id}", custom_id_button=unique_id)
         
         embed = (CustomEmbed(None, data_options["tickets"]["description"])
             .create_embed()

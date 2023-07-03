@@ -5,7 +5,6 @@ from classes.io import JSONHandler
 
 class Dropdown(discord.ui.Select):
 	def __init__(self, args, **kwargs):
-		response = kwargs.get('response')
 		placeholder = kwargs.get('placeholder') or "You didn't type the placeholder"
 		min_values = kwargs.get('min_values') or 1
 		max_values = kwargs.get('max_values') or 1
@@ -13,7 +12,6 @@ class Dropdown(discord.ui.Select):
 		self.custom_id_dropdown =  kwargs.get("custom_id_dropdown") or None
 		self.custom_id_button = kwargs.get("custom_id_button") or None
 		
-		self.response = response
 		# Set the options that will be presented inside the dropdown
 
 		options = [
@@ -94,5 +92,5 @@ class DropdownView(discord.ui.View):
 		self.custom_id_button = kwargs.get("custom_id_button")
 
 		# Adds the dropdown to our view object.
-		self.add_item(Dropdown(args, response=response, placeholder=placeholder, min_values=min_values, max_values=max_values, custom_id_dropdown=self.custom_id_dropdown, custom_id_button=self.custom_id_button))
+		self.add_item(Dropdown(args, placeholder=placeholder, min_values=min_values, max_values=max_values, custom_id_dropdown=self.custom_id_dropdown, custom_id_button=self.custom_id_button))
 		#self.add_item(DeleteButtonView())

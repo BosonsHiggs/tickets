@@ -20,10 +20,10 @@ class DelButton(discord.ui.Button):
 		channel = interaction.channel
 
 		data_options = JSONHandler.read_json('json_files/options.json')
-		try:
-			msg_delete = data_options["channel_ticket"]["messge_ticket_deleted_press"].format(interaction.user.mention)
-			await channel.send(msg_delete, view=ConfirmDelete())
-		except Exception as e:
+		msg_delete = data_options["channel_ticket"]["messge_ticket_deleted_press"].format(interaction.user.mention)
+		await channel.send(msg_delete, view=ConfirmDelete())
+		
+		"""except Exception as e:
 			print(f"An error occurred: {e}")
 			tb = traceback.format_exc()
-			print(tb)
+			print(tb)"""
