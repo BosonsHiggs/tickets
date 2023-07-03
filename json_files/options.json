@@ -1,0 +1,25 @@
+{
+   "options":  [
+        ["Suporte Geral", "Dúvidas gerais e suporte.", "🌐"],
+        ["Suporte de Cobrança", "Dúvidas sobre cobrança e pagamento.", "💰"],
+        ["Suporte Técnico", "Problemas técnicos e assistência.", "🔧"],
+        ["Suporte de Conta", "Ajuda com a conta e configurações.", "👤"],
+        ["Outro", "Outras dúvidas ou problemas.", "❓"]
+    ],
+    "tickets": {
+        "title": "",
+        "description": "> Clique num ticket abaixo!\n> Obs.: não abri um ticket sem necessidade!"
+    },
+    "channel_ticket": {
+        "message_ticket": "> {0} Clique no botão abaixo para deletar esse ticket!",
+        "message_channel_exist": "Você já abriu um ticket!",
+        "message_channel_deleted": "{0} (ID: {1}) deletou o ticket {2}!",
+        "messge_ticket_deleted_press": "{0} você deseja realmente deletar esse ticket?"
+    },
+    "bot_configs": {
+        "client_id": 1025801029566070824,
+        "channel_log": 1124142828616949899,
+        "channel_ticket_log": 1124142828616949899,
+        "channel_bot_erro": 1124142828616949899
+    }
+}
