@@ -6,6 +6,7 @@ import aioredis
 import datetime
 from discord.ext import commands
 from classes.io import JSONHandler
+from classes.redis_handler import RedisHandler
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -20,6 +21,7 @@ class SupportBot(commands.Bot):
 	def __init__(self, *, intents: discord.Intents, application_id: int):
 		super().__init__(command_prefix=data_options["bot_configs"]["prefix"], intents=intents, application_id=application_id)
 		self.redis = None
+		self.redis_handler = None
 
 	async def setup_hook(self):
 		## Lendo as cogs
@@ -28,6 +30,9 @@ class SupportBot(commands.Bot):
 
 		## Conectando ao servidor Redis
 		self.redis = aioredis.from_url("redis://localhost")
+
+		## Inicializando a classe RedisHandler com self.redis
+		self.redis_handler = RedisHandler(self.redis)
 
 	async def on_ready(self):
 		print(f'Cliente logado como {self.user} (ID: {self.user.id})')

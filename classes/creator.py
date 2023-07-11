@@ -139,18 +139,15 @@ class Creator(commands.Cog):
 		options = data_handler["options"]
 
 		async def load_buttons_dropdowns():
-			keys = await self.bot.redis.keys('ticket:*')
+			keys = await self.bot.redis_handler.keys('ticket:*')
 			for key in keys:
-				ticket_details = json.loads(await self.bot.redis.get(key))
+				ticket_details = await self.bot.redis_handler.get(key)
 
 				#Del buttons
 				del_button = DelButton(discord.ButtonStyle.danger, '🗑️', str(ticket_details["button_id"]))
 				delete_button = DeleteButtonView(del_button)
 				#Dropdown
 				dropdown_view = DropdownView(options, placeholder=data_handler["channel_ticket"]["dropdown_placeholder"], custom_id_dropdown=str(ticket_details["dropdown_id"]), custom_id_button=str(ticket_details["button_id"]))
-
-				# Add del_button to the view
-				#dropdown_view.add_item(del_button)
 
 				# Add the view to the bot
 				self.bot.add_view(dropdown_view)

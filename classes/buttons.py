@@ -16,14 +16,7 @@ class DelButton(discord.ui.Button):
 		await self.delete_ticket(interaction)
 
 	async def delete_ticket(self, interaction: discord.Interaction):
-		await interaction.response.defer(ephemeral=True)
-		channel = interaction.channel
-
+		#await interaction.response.defer(ephemeral=True)
 		data_options = JSONHandler.read_json('json_files/options.json')
 		msg_delete = data_options["channel_ticket"]["messge_ticket_deleted_press"].format(interaction.user.mention)
-		await channel.send(msg_delete, view=ConfirmDelete())
-		
-		"""except Exception as e:
-			print(f"An error occurred: {e}")
-			tb = traceback.format_exc()
-			print(tb)"""
+		await interaction.response.send_message(msg_delete, view=ConfirmDelete(), ephemeral=True)

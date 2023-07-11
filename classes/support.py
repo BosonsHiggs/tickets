@@ -21,6 +21,7 @@ class Support(commands.Cog):
         view = DropdownView(options, placeholder=data_options["channel_ticket"]["dropdown_placeholder"], custom_id_dropdown=f"dropdown_{ctx.message.id}", custom_id_button=unique_id)
         
         embed = (CustomEmbed(None, data_options["tickets"]["description"])
+            .set_image("https://i.imgur.com/civTeNQ.gif")
             .create_embed()
          )
         
@@ -35,6 +36,8 @@ class Support(commands.Cog):
             "options": options
         }
 
-        await self.bot.redis.set(f'ticket:{ctx.message.id}', json.dumps(ticket_details))
+        #await self.bot.redis.set(f'ticket:{ctx.message.id}', json.dumps(ticket_details))
+        await self.bot.redis_handler.save(f'ticket:{ctx.message.id}', ticket_details)
+
 async def setup(bot: commands.Bot) -> None:
 	await bot.add_cog(Support(bot))

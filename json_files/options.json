@@ -16,7 +16,9 @@
         "message_channel_deleted": "> {0} (ID: {1}) deletou o ticket {2}!",
         "messge_ticket_deleted_press": "> {0} você deseja realmente deletar esse ticket?",
         "dropdown_response": "Você selecionou:",
-        "dropdown_placeholder": "Escolha uma opção de ticket"
+        "dropdown_placeholder": "Escolha uma opção de ticket",
+        "ephemeral_message": "Essa mensagem é privada, então você deletar somente atualizando a tela ou clicando em ignorar!",
+        "message_ticket_created": "Seu ticket foi criado com sucesso no canal <#{0}>! ✅"
     },
     "bot_configs": {
         "client_id": 1025801029566070824,
