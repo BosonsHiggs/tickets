@@ -44,7 +44,10 @@ class CustomEmbed:
 		return self
 
 	def create_embed(self):
-		"""Create and return a discord.Embed instance."""
+		"""
+		TODO: 
+		- Crie e retorna uma instância de discord.Embed
+		"""
 		embed = discord.Embed(
 			title=self.title, 
 			description=self.description, 

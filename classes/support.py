@@ -27,7 +27,7 @@ class Support(commands.Cog):
         
         await ctx.send(embed=embed, view=view)
 
-        # Save the ticket details in Redis when the ticket is created.
+        # Salvar dados do ticket criado para ser usado na restauração.
         ticket_details = {
             'user_id': ctx.author.id,
             'channel_id': ctx.channel.id,
@@ -36,7 +36,6 @@ class Support(commands.Cog):
             "options": options
         }
 
-        #await self.bot.redis.set(f'ticket:{ctx.message.id}', json.dumps(ticket_details))
         await self.bot.redis_handler.save(f'ticket:{ctx.message.id}', ticket_details)
 
 async def setup(bot: commands.Bot) -> None:

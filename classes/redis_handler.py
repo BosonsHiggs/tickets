@@ -1,6 +1,5 @@
 import json
 import aioredis
-import traceback
 
 class RedisHandler:
 	"""

@@ -13,16 +13,17 @@ class Dropdown(discord.ui.Select):
 		self.custom_id_button = kwargs.get("custom_id_button") or None
 		self.data_options = JSONHandler.read_json('json_files/options.json')
 		
-		# Set the options that will be presented inside the dropdown
+		# Defina as opções que serão apresentadas dentro do menu suspenso.
 
 		options = [
 			discord.SelectOption(label=x, description=y, emoji=z) for (x, y, z) in args
 		]
 
 		self.labels = [x for (x, y, z) in args ]
-		# The placeholder is what will be shown when no option is chosen
-		# The min and max values indicate we can only pick one of the three options
-		# The options parameter defines the dropdown options. We defined this above
+
+		# O espaço reservado (placeholder) é o que será mostrado quando nenhuma opção for escolhida
+		# Os valores mínimos e máximos indicam que só podemos escolher uma das três opções
+		# O parâmetro opções define as opções do menu suspenso. Nós definimos isso acima
 		super().__init__(
 						 placeholder=placeholder, 
 						 min_values=min_values, 
@@ -94,6 +95,5 @@ class DropdownView(discord.ui.View):
 		self.custom_id_dropdown =  kwargs.get('custom_id_dropdown')
 		self.custom_id_button = kwargs.get("custom_id_button")
 
-		# Adds the dropdown to our view object.
+		# Adiciona o SelectMenu/ Dropdown ao nosso objeto view.
 		self.add_item(Dropdown(args, placeholder=placeholder, min_values=min_values, max_values=max_values, custom_id_dropdown=self.custom_id_dropdown, custom_id_button=self.custom_id_button))
-		#self.add_item(DeleteButtonView())
