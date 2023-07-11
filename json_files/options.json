@@ -8,7 +8,7 @@
     ],
     "tickets": {
         "title": "",
-        "description": "> Clique num ticket abaixo!\n> Obs.: não abri um ticket sem necessidade!"
+        "description": "> Clique num ticket abaixo!\n> Obs.: não abra um ticket sem necessidade!"
     },
     "channel_ticket": {
         "message_ticket": "> {0} Clique no botão abaixo para deletar esse ticket!",
