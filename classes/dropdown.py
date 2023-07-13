@@ -56,13 +56,14 @@ class Dropdown(discord.ui.Select):
 			category = await guild.create_category(name=selected_category)
 
 		#Nome do canal a ser criado
-		channel_name = f'{selected_category}-{interaction.user.id}'
+		channel_name = f'{selected_category}-{interaction.user.id}'.replace(' ', '-').lower()
 
 		# Verificar se o canal já existe
 		existing_channel = discord.utils.get(guild.text_channels, name=channel_name, category=category)
 		if existing_channel:
-			await interaction.response.send_message(self.data_options["channel_ticket"]["message_channel_exist"], ephemeral=True)
-			return
+			if existing_channel.permissions_for(interaction.user).read_messages:
+				await interaction.followup.send(self.data_options["channel_ticket"]["message_channel_exist"], ephemeral=True)
+				return
 
 		#Canal do ticket
 		channel = await guild.create_text_channel(name=f'{selected_category}-{interaction.user.id}', category=category, overwrites=overwrites)

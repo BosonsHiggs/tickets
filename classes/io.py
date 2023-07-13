@@ -32,7 +32,7 @@ class JSONHandler:
 		- Escreve os dados em um arquivo JSON
 		- Adicionei ensure_ascii=False ao método json.dump(). 
 		- Isso garante que os caracteres não ASCII sejam escritos no arquivo JSON corretamente, 
-		  em vez de serem escapados com sequências \uXXXX.
+		  em vez de serem escapados com sequências.
 		- Adicionei encoding='utf-8' às funções open() em ambos os métodos. 
 		  Isso garante que o arquivo seja lido e gravado como UTF-8.
 		"""
